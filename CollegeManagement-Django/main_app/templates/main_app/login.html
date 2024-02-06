@@ -1,0 +1,202 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <style media="screen">
+        body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background: #304352;  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to right, #d7d2cc, #304352);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to right, #d7d2cc, #304352); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+  }
+  
+  .box {
+      width: 500px;
+      padding: 40px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background: #212529;
+      border-radius: 15px;
+      text-align: center;
+      transition: 0.25s;
+      margin-top: 100px
+  }
+  
+  .box input[type="text"],
+  .box input[type="password"] {
+      border: 0;
+      background: none;
+      display: block;
+      margin: 20px auto;
+      text-align: center;
+      border: 2px solid #838383;
+      padding: 10px 10px;
+      width: 250px;
+      outline: none;
+      color: white;
+      border-radius: 0px;
+      transition: 0.25s
+  }
+  
+  .box h1 {
+      color: white;
+      
+      font-weight: 500
+  }
+  
+  .box input[type="text"]:focus,
+  .box input[type="password"]:focus {
+      width: 300px;
+      border-color:#4caf50;
+  }
+  
+  .box input[type="submit"] {
+      border: 0;
+      background: #4caf50;
+      display: block;
+      margin: 20px auto;
+      text-align: center;
+      padding: 14px 40px;
+      outline: none;
+      color: white;
+      border-radius: 0px;
+      transition: 0.25s;
+      cursor: pointer
+  }
+  
+  .box input[type="submit"]:hover {
+      background: #347736;
+  }
+  
+  
+      </style>
+  
+    <style>
+        .btn-group button {
+          background-color: #04AA6D; 
+          border: 1px solid green; 
+          color: white;
+          padding: 10px 24px; 
+          cursor: pointer; 
+          float: left; 
+        }
+        
+        .btn-group:after {
+          content: "";
+          clear: both;
+          display: table;
+        }
+        
+        .btn-group button:not(:last-child) {
+          border-right: none;
+        }
+        
+        .btn-group button:hover {
+          background-color: #3e8e41;
+        }
+        </style>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- Google Recaptcha     -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+
+<body class="hold-transition login-page">
+   
+
+
+
+
+    <div class="btn-group">
+        <button value="Text" onclick='document.getElementById("here").innerHTML="ADMIN"'>Admin</button>
+        <button value="Text" onclick='document.getElementById("here").innerHTML="STUDENT LOGIN"'>Student</button>
+        <button value="Text" onclick='document.getElementById("here").innerHTML="STAFF LOGIN"'>Staff</button>
+      </div><br>
+
+      <img src="https://images.collegedunia.com/public/college_data/images/logos/14768572339000.jpg">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="1.html"><b>ZEAL INSTITUTE OF MANAGEMENT</b></a>
+            <p id=here><b>&nbsp;</b></p>
+
+        </div>
+
+       
+
+    
+        <div class="card">
+            <div class="card-body login-card-body">
+                {% if messages %}
+                <div class="col-12">
+                    {% for message in messages %}
+                    {% if message.tags == 'error' %}
+                    <div class="alert alert-danger text-center ">
+                        {{message }}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <form action="doLogin/" method="post">
+                    {% csrf_token %}
+                    <div class="input-group mb-3">
+                        <input required type="email" name='email' class="form-control" placeholder="Email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input required type="password" name='password' class="form-control" placeholder="Password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="g-recaptcha" data-sitekey="6LfswtgZAAAAAJ7bhwqZZtDpBsc75ekH6FWA4Fnt"></div>
+
+                    </div>
+                    
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-success btn-block">Log In</button>
+                        </div>
+
+
+                        <!-- /.col -->
+                    </div>
+                </form>
+
+                
+
+
+                
+
+            </div>
+           
+        </div>
+    </div>
+
+
+    <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'dist/js/adminlte.min.js' %}"></script>
+
+</body>
+
+</html>
